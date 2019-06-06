@@ -11,18 +11,20 @@
     </head>
 
     <body>
-    <h3 id="header">TO-DO Liste</h3>
+        <h3 id="header">TO-DO</h3>
 
     <div id="todo">
     	<div id="add">
 		    <label>New Task</label>
 		    <form action="/add" method="POST">
 		    	<input type="text" name="adding">
-                <input type="submit" value="Add Task">
+                <div>
+                    <input type="submit" value="Add Task" id="addTask">
+                </div>
 		    </form>
 	    </div>
 	    <div id="content">
-	    	<h3 id="tasks">Actual Tasks</h3>
+	    	<h3 id="tasks">Tasks</h3>
             <form action="/delete" method="POST">
                 {% for entry in entries %}
         		    <label class="container"><span>{{ entry.text }}</span>
@@ -30,7 +32,9 @@
         		  		<span class="checkmark"></span>
         			</label>
                 {% endfor %}
-                <input type="submit" value="Delete Tasks">
+                <div>
+                    <input type="submit" value="Delete Tasks"  id="deleteTask">
+                </div>
             </form>
 		</div>
 	</div>

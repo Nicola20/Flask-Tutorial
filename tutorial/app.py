@@ -11,23 +11,27 @@ app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///' + os.path.join(basedir, 'to
 
 db = SQLAlchemy(app)
 
+
 class Entry(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	text = db.Column(db.String(300))
-	done = db.Column(db.Boolean)
+	# done = db.Column(db.Boolean)
+
 
 @app.route('/')
 def index():
     entries = Entry.query.all()
     return render_template('index.html', entries=entries)
 
+
 @app.route('/add', methods=['POST'])
 def add():
-	entry = Entry(text= request.form['adding'], done=False)
+	entry = Entry(text= request.form['adding'])
 	db.session.add(entry)
 	db.session.commit()
 
 	return redirect(url_for('index'))
+
 
 @app.route('/delete' , methods=['POST'])
 def delete():
